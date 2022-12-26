@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Стройка | Изменить объект</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+
+<div th:insert="fragments/header :: header"></div>
+<div style="padding: 40px;">
+    <h2>Изменить объект</h2>
+    <form method="post" th:object="${object}">
+        <div class="mb-3">
+            <label for="objectType" class="form-label">Тип объекта</label>
+            <input type="text" class="form-control" th:field="*{objectType}" id="objectType" placeholder="Тип объекта">
+            <label style="color: red" th:if="${#fields.hasErrors('objectType')}" th:errors="*{objectType}" class="form-label"></label>
+        </div>
+        <div class="mb-3">
+            <label for="area" class="form-label">Площадь</label>
+            <input type="number" class="form-control" th:field="*{area}" id="area" placeholder="Площадь">
+            <label style="color: red" th:if="${#fields.hasErrors('area')}" th:errors="*{area}" class="form-label"></label>
+        </div>
+        <div class="mb-3">
+            <label for="floors" class="form-label">Этажность</label>
+            <input type="number" class="form-control" th:field="*{floors}" id="floors" placeholder="Этажность">
+            <label style="color: red" th:if="${#fields.hasErrors('floors')}" th:errors="*{floors}" class="form-label"></label>
+        </div>
+        <div class="form-group">
+            <label for="startDate">Дата начала строительства</label>
+            <input type="date" class="form-control" th:field="*{startDate}" id="startDate">
+        </div>
+        <div class="form-group">
+            <label for="endDate">Дата окончания строительства</label>
+            <input type="date" class="form-control" th:field="*{endDate}" id="endDate">
+        </div>
+        <div class="mb-3">
+            <label for="buildingPermit" class="form-label">Разрешение на строительство</label>
+            <input type="text" class="form-control" th:field="*{buildingPermit}" id="buildingPermit" placeholder="Разрешение на строительство">
+            <label style="color: red" th:if="${#fields.hasErrors('buildingPermit')}" th:errors="*{buildingPermit}" class="form-label"></label>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="sector">Участок</label>
+            <select class="form-select" id="sector" name="sector">
+                <div th:each="sec : ${sectors}">
+                    <option th:selected="" th:value="${sec.id}" th:text="${sec.country} + ', ' + ${sec.city} + ', ' + ${sec.street}"></option>
+                </div>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="buildingNumber" class="form-label">Номер строения</label>
+            <input type="number" class="form-control" th:field="*{buildingNumber}" id="buildingNumber" placeholder="Номер строения">
+            <label style="color: red" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}" class="form-label"></label>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="employee">Ответственное лицо</label>
+            <select class="form-select" id="employee" name="employee">
+                <div th:each="emp : ${employees}">
+                    <option th:value="${emp.id}" th:text="${emp.surname} + ' ' + ${emp.name} + ' ' + ${emp.middlename}"></option>
+                </div>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Изменить</button>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
+</html>

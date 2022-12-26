@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+    <title>Список пользователей</title>
+</head>
+<body>
+<div th:each="el : ${users}">
+    <i th:text="${el.login}"></i><br>
+    <i th:text="${el.roles}"></i><br>
+    <a th:href="'/admin/edit/' + ${el.id}">Редактировать</a><br><br>
+</div>
+</body>
+</html>

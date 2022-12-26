@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Стройка | Аккаунты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div style="padding: 40px;">
+    <h1>Аккаунты</h1>
+    <a th:href="'/registration'">Зарегистрировать аккаунт</a>
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <div th:each="acc : ${accounts}">
+                <li class="list-group-item">
+                    Логин: <i th:text="${acc.login}"></i><br>
+                    <i th:text="${acc.owner.surname} + ' ' + ${acc.owner.name} + ' ' + ${acc.owner.middlename}"></i><br>
+                    <a th:href="'/accounts/delete/' + ${acc.id}">Удалить</a>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
+</html>

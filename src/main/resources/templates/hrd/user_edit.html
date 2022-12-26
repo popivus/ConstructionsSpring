@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+    <title>Стройка | Изменить пользователя</title>
+</head>
+<body>
+    <form th:action="${'/admin'}" method="post">
+        <div th:each="el : ${user}">
+            <input type="hidden" th:value="${el.id}" name="userId">
+            <input type="text" name="login" th:value="${el.login}">
+        </div>
+        <div th:each="role : ${roles}">
+            <div th:each="el : ${user}">
+                <input th:id="${role}" type="checkbox" th:name="${'roles[]'}" th:value="${role}" th:checked="${#lists.contains(el.roles, role)}"/>
+                <label th:text="${role}"></label>
+            </div>
+        </div><br>
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
